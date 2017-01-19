@@ -36,7 +36,6 @@ public class ExamController {
 	@RequestMapping(value = "/exam/openQuestionDetail.do")	 //문제 상세 보기 페이지로 이동
 	 public ModelAndView openQuestionDetail() throws Exception {
 		ModelAndView mv = new ModelAndView("/sample/questionDetail");
-
 		return mv;
 	}
 	@RequestMapping(value = "/exam/insertQuestion.do") //문제 생성
@@ -49,7 +48,6 @@ public class ExamController {
 
 		ModelAndView mv = new ModelAndView("redirect:/exam/openQuestionList.do");
 		mv.addObject(vo);
-
 		return mv;
 	}
 	//문제 수정

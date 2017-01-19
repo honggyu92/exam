@@ -82,8 +82,6 @@
 							</table>
 						</div>
 					</td>
-					
-				
 				</tr>
 			</tbody>
 		</table>
@@ -120,14 +118,12 @@
 				}else{
 					$("[name=div1]" ).hide();
 					$("[name=div2]" ).hide();
-					
 				}
 				
-				
             });
+            
             $("#add").click(function(e){
             	 e.preventDefault();
-                // item 의 최대번호 구하기
                 var lastOptionNo = $("#example tr:last").attr("class").replace("option", "");
  
                 var newoption = $("#example tr:eq(1)").clone();
@@ -169,17 +165,14 @@
               var comSubmit = new ComSubmit("frm");
              comSubmit.setUrl("<c:url value='/exam/insertQuestion.do' />");
              comSubmit.submit(); 
-            
 //            $("#frm").prop("action","/exam/insertQuestion.do");
 //            $("#frm").submit(); 
-             
         }
+        
         function resizeRowspan(cls){
             var rowspan = $("."+cls).length;
             $("."+cls+":first td:eq(0)").attr("rowspan", rowspan);
         }
-
-
          
     </script>
 </body>
