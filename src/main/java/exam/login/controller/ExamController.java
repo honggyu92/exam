@@ -1,8 +1,9 @@
 package exam.login.controller;
 
 import java.util.List;
+import java.util.Optional;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,43 +14,44 @@ import exam.login.vo.QuestionVO;
 
 @Controller
 public class ExamController {
-	
-	 @Resource(name="examService")
-	    private ExamService examService;
 
-	 @RequestMapping(value = "/exam/openQuestionList.do") //¹®Á¦ÀºÇà ¸ñ·Ï °Ë»ö
-	 public ModelAndView openQuestionList() throws Exception{
-			ModelAndView mv = new ModelAndView("/sample/questionList");
+	@Inject
+	private ExamService examService;
 
-			List<QuestionVO> list = examService.getQuestionList();
-			mv.addObject("list", list);
+	@RequestMapping(value = "/exam/openQuestionList.do") // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½
+	public ModelAndView openQuestionList() throws Exception {
+		ModelAndView mv = new ModelAndView("/sample/questionList");
+		List<QuestionVO> list = examService.getQuestionList();
+		mv.addObject("list", list);
 
-			return mv;
-		}
-	 
-	 @RequestMapping(value = "/exam/openQuestionWrite.do")	 //¹®Á¦ Ãß°¡ ÆäÀÌÁö·Î ÀÌµ¿
-	 public ModelAndView openQuestionWrite() throws Exception {
-			ModelAndView mv = new ModelAndView("/sample/questionWrite");
+		return mv;
+	}
 
-			return mv;
-		}
-	@RequestMapping(value = "/exam/openQuestionDetail.do")	 //¹®Á¦ »ó¼¼ º¸±â ÆäÀÌÁö·Î ÀÌµ¿
-	 public ModelAndView openQuestionDetail() throws Exception {
+	@RequestMapping(value = "/exam/openQuestionWrite.do") // ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+	public ModelAndView openQuestionWrite() throws Exception {
+		ModelAndView mv = new ModelAndView("/sample/questionWrite");
+
+		return mv;
+	}
+
+	@RequestMapping(value = "/exam/openQuestionDetail.do") // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½
+	public ModelAndView openQuestionDetail() throws Exception {
 		ModelAndView mv = new ModelAndView("/sample/questionDetail");
 		return mv;
 	}
-	@RequestMapping(value = "/exam/insertQuestion.do") //¹®Á¦ »ý¼º
+
+	@RequestMapping(value = "/exam/insertQuestion.do") // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	public ModelAndView insertQuestion(QuestionVO vo) throws Exception {
-		
-		//System.out.println(request.getParameter("subject"));
-		
-		
+
+		// System.out.println(request.getParameter("subject"));
+
 		examService.insertQuestion(vo);
 
 		ModelAndView mv = new ModelAndView("redirect:/exam/openQuestionList.do");
 		mv.addObject(vo);
 		return mv;
 	}
-	//¹®Á¦ ¼öÁ¤
-	
+
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+
 }

@@ -2,7 +2,7 @@ package exam.login.service;
 
 import java.util.List;
 
-import javax.annotation.Resource;
+import javax.inject.Inject;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
@@ -10,13 +10,13 @@ import org.springframework.stereotype.Service;
 import exam.login.dao.ExamDAO;
 import exam.login.vo.QuestionVO;
 
-@Service("examService")
-public class ExamServiceImpl implements ExamService{
+@Service
+public class ExamServiceImpl implements ExamService {
 	Logger log = Logger.getLogger(this.getClass());
 	
-	@Resource(name="examDAO")
+	@Inject
 	private ExamDAO examDAO;
-
+	
 	@Override
 	public List<QuestionVO> getQuestionList() throws Exception{	//°Ë»ö
 		return examDAO.getQuestionList();
